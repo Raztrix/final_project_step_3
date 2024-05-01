@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  train:
+    image: python:3.10
+    build: ./train
+    volumes:
+      - shared-data:/usr/src/app/train
+
+  model:
+    image: python:3.10
+    build: ./model
+    volumes:
+      - shared-data:/usr/src/app/train
+    ports:
+      - "3000:3000"
+
+volumes:
+  shared-data:
